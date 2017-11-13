@@ -3,6 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
+from datetime import datetime
 
 
 def home(request):
@@ -23,3 +24,14 @@ def list_articles(request, month, year):
     return HttpResponse(
         "Vous avez demande les articles de {0} {1}.".format(month, year)
     )
+
+
+def date_actuelle(request):
+    return render(request, 'blog/date.html', {'date': datetime.now()})
+
+
+def addition(request, nombre1, nombre2):
+    total = int(nombre1) + int(nombre2)
+
+    # Retourne nombre1, nombre2 et la somme des deux au tpl
+    return render(request, 'blog/addition.html', locals())
