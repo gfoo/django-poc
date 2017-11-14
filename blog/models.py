@@ -9,6 +9,9 @@ class Categorie(models.Model):
     def __str__(self):
         return self.nom
 
+    def __unicode__(self):
+        return self.__str__()
+
 
 class Article(models.Model):
     titre = models.CharField(max_length=100)
@@ -21,3 +24,6 @@ class Article(models.Model):
 
     def __str__(self):
         return self.titre
+
+    def __unicode__(self):
+        return self.__str__()
