@@ -5,6 +5,22 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from datetime import datetime
 
+from blog.models import Article
+
+
+def accueil(request):
+    articles = Article.objects.all()
+    return render(request, 'blog/accueil.html', {'derniers_articles': articles})
+
+
+def lire(request, id):
+    try:
+        article = Article.objects.get(id=id)
+    except Article.DoesNotExist:
+        raise Http404
+
+    return render(request, 'blog/lire.html', {'article': article})
+
 
 def home(request):
     text = """<h1>Bienvenue sur mon blog !</h1>
